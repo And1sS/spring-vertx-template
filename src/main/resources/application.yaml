@@ -1,3 +1,8 @@
 http:
     port: 8080
     server-instances: 16
+database:
+    url: localhost:5432/spring_vertx_template_database
+    user: postgres
+    password: mysecretpassword
+    connection-pool-size: 30

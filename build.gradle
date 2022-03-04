@@ -28,9 +28,13 @@ dependencies {
     // Vert.x
     implementation "io.vertx:vertx-core:$vertxVersion"
     implementation "io.vertx:vertx-web:$vertxVersion"
+    implementation "io.vertx:vertx-jdbc-client:$vertxVersion"
 
     // Jackson
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
+
+    // Postgres jdbc driver
+    implementation 'org.postgresql:postgresql:42.3.3'
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
