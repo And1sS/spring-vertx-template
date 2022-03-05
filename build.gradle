@@ -29,12 +29,20 @@ dependencies {
     implementation "io.vertx:vertx-core:$vertxVersion"
     implementation "io.vertx:vertx-web:$vertxVersion"
     implementation "io.vertx:vertx-jdbc-client:$vertxVersion"
+    implementation "io.vertx:vertx-kafka-client:$vertxVersion"
 
     // Jackson
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
 
     // Postgres jdbc driver
     implementation 'org.postgresql:postgresql:42.3.3'
+
+    // Kafka clients
+    implementation('org.apache.kafka:kafka-clients:3.1.0') {
+        version {
+            strictly '2.8.1'
+        }
+    }
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

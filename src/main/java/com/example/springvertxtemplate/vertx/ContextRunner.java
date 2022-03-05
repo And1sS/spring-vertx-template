@@ -21,6 +21,10 @@ public class ContextRunner {
         this.serviceContext = vertx.getOrCreateContext();
     }
 
+    public <T> void runOnServiceContext(Handler<Promise<T>> task, int timeoutMillis) {
+        runOnServiceContext(task, 1, timeoutMillis);
+    }
+
     public <T> void runOnServiceContext(Handler<Promise<T>> task, int count, int timeoutMillis) {
         runOnContext(() -> serviceContext, task, count, timeoutMillis);
     }

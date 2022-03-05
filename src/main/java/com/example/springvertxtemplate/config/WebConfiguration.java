@@ -42,21 +42,6 @@ public class WebConfiguration {
         return router;
     }
 
-    @Data
-    @Validated
-    @Component
-    @NoArgsConstructor
-    @ConfigurationProperties(prefix = "http")
-    private static class HttpServerProperties {
-
-        @NotNull
-        Integer port;
-
-        @NotNull
-        @Min(1)
-        Integer serverInstances;
-    }
-
     @Configuration
     public static class HttpServerConfiguration {
 
@@ -81,5 +66,20 @@ public class WebConfiguration {
 
             contextRunner.runOnNewContext(creationHandler, httpServerProperties.serverInstances, 6000);
         }
+    }
+
+    @Data
+    @Validated
+    @Component
+    @NoArgsConstructor
+    @ConfigurationProperties(prefix = "http")
+    private static class HttpServerProperties {
+
+        @NotNull
+        Integer port;
+
+        @NotNull
+        @Min(1)
+        Integer serverInstances;
     }
 }
