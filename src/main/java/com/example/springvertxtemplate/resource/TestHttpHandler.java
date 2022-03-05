@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 public class TestHttpHandler implements VertxHttpHandler {
 
     @NonNull
-    SqlClient sqlClient;
+    private final SqlClient sqlClient;
 
     @NonNull
-    KafkaMessageProducer kafkaMessageProducer;
+    private final KafkaMessageProducer kafkaMessageProducer;
 
     @RouteHandler(path = "/", method = "GET")
     public void handleDefaultGet(RoutingContext routingContext) {

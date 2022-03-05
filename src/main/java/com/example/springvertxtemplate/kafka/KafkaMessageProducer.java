@@ -26,10 +26,10 @@ public class KafkaMessageProducer {
     private static final AtomicInteger lastMessageQueueSize = new AtomicInteger();
 
     @NonNull
-    Vertx vertx;
+    private final Vertx vertx;
 
     @NonNull
-    KafkaProducer<String, String> kafkaProducer;
+    private final KafkaProducer<String, String> kafkaProducer;
 
     public void init() {
         vertx.setPeriodic(1000, timerId -> pollAndSendMessages());
