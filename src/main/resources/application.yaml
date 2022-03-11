@@ -1,3 +1,7 @@
+event-loop-threads: 8
+worker-threads: 50
+kafka-messaging:
+    enabled: false
 http:
     port: 8080
     server-instances: 16
