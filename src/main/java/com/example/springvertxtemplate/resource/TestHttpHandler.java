@@ -31,8 +31,8 @@ public class TestHttpHandler implements VertxHttpHandler {
             } catch (Exception e) {
             }
             promise.complete();
-        }).onSuccess(result ->
-                sqlClient.query("select * from test")
+        }, false).onSuccess(
+                result -> sqlClient.query("select * from test")
                         .execute(queryResult -> {
                             final StringBuilder response = new StringBuilder();
                             queryResult.result()
