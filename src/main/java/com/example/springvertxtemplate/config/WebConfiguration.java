@@ -3,10 +3,11 @@ package com.example.springvertxtemplate.config;
 import com.example.springvertxtemplate.vertx.ContextRunner;
 import com.example.springvertxtemplate.web.HandlerScanner;
 import com.example.springvertxtemplate.web.VertxHttpHandler;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.springvertxtemplate.websocket.WebSocketHandler;
 import io.vertx.core.Handler;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
+import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import lombok.Data;
@@ -42,6 +43,11 @@ public class WebConfiguration {
         return router;
     }
 
+    @Bean
+    public WebSocketHandler webSocketHandler(EventBus eventBus) {
+        return new WebSocketHandler(eventBus);
+    }
+
     @Configuration
     public static class HttpServerConfiguration {
 
@@ -57,11 +63,14 @@ public class WebConfiguration {
         @Autowired
         private Router router;
 
+        @Autowired
+        private WebSocketHandler webSocketHandler;
 
         @PostConstruct
         public void runHttpServer() {
             final Handler<Promise<HttpServer>> creationHandler = promise -> vertx.createHttpServer()
                     .requestHandler(router)
+                    .webSocketHandler(webSocketHandler)
                     .listen(httpServerProperties.port, promise);
 
             contextRunner.runOnNewContext(creationHandler, httpServerProperties.serverInstances, 6000);
