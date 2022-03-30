@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     def vertxVersion = '4.2.5'
+    def metricsVersion = '4.0.3'
 
     // Spring
     implementation 'org.springframework.boot:spring-boot-starter'
@@ -30,6 +31,16 @@ dependencies {
     implementation "io.vertx:vertx-web:$vertxVersion"
     implementation "io.vertx:vertx-jdbc-client:$vertxVersion"
     implementation "io.vertx:vertx-kafka-client:$vertxVersion"
+    implementation "io.vertx:vertx-dropwizard-metrics:$vertxVersion"
+
+    // Prometheus
+    implementation "io.prometheus:simpleclient_dropwizard:0.15.0"
+    implementation "io.prometheus:simpleclient_vertx:0.15.0"
+    implementation "io.prometheus:simpleclient:0.15.0"
+
+    // Dropwizard metrics
+    implementation "io.dropwizard.metrics:metrics-core:$metricsVersion"
+    implementation "io.dropwizard.metrics:metrics-jvm:$metricsVersion"
 
     // Jackson
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'

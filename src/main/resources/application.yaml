@@ -10,3 +10,9 @@ database:
     user: postgres
     password: mysecretpassword
     connection-pool-size: 30
+metrics:
+    enabled: true
+    prometheus:
+        enabled: true
+        url: /metrics
+        port: 8080

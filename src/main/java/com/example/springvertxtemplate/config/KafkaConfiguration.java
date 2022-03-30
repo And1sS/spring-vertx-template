@@ -6,6 +6,7 @@ import com.example.springvertxtemplate.vertx.ContextRunner;
 import io.vertx.core.Vertx;
 import io.vertx.kafka.client.producer.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +45,7 @@ public class KafkaConfiguration {
     }
 
     @Configuration
-    @ConditionalOnProperty(prefix = "kafka-messaging", name = "enabled", havingValue = "true")
+    @ConditionalOnBean(BasicKafkaMessageProducer.class)
     public static class KafkaProducerConfiguration {
 
         @Autowired

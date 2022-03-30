@@ -14,7 +14,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -26,7 +25,6 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Configuration
-@EnableConfigurationProperties
 public class WebConfiguration {
 
     @Bean

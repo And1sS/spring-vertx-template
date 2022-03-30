@@ -4,6 +4,7 @@ import com.example.springvertxtemplate.vertx.ContextRunner;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.metrics.MetricsOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +16,12 @@ public class VertxConfiguration {
 
     @Bean
     public VertxOptions vertxOptions(@Value("${event-loop-threads:#{null}}") @NotNull Integer eventLoopThreads,
-                                     @Value("${worker-threads:#{null}}") @NotNull Integer workerThreads) {
+                                     @Value("${worker-threads:#{null}}") @NotNull Integer workerThreads,
+                                     MetricsOptions metricsOptions) {
 
         return new VertxOptions()
                 .setEventLoopPoolSize(eventLoopThreads)
+                .setMetricsOptions(metricsOptions)
                 // these worker threads are shared among all event loop contexts
                 .setWorkerPoolSize(workerThreads);
     }
