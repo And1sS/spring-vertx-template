@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = "17"
 
 configurations {
     compileOnly {
@@ -33,6 +33,8 @@ dependencies {
     implementation "io.vertx:vertx-kafka-client:$vertxVersion"
     implementation "io.vertx:vertx-dropwizard-metrics:$vertxVersion"
 
+    implementation 'io.netty:netty-transport-native-epoll:4.1.74.Final:linux-x86_64'
+
     // Prometheus
     implementation "io.prometheus:simpleclient_dropwizard:0.15.0"
     implementation "io.prometheus:simpleclient_vertx:0.15.0"
@@ -55,12 +57,13 @@ dependencies {
         }
     }
 
-    compileOnly 'org.projectlombok:lombok'
+    compileOnly files('libs/lombok.jar')
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor files('libs/lombok.jar')
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+targetCompatibility = JavaVersion.VERSION_17
